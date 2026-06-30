@@ -1,7 +1,11 @@
-data/raw/
-data/processed/
-models/
-outputs/
+data/raw/*
+!data/raw/.gitkeep
+data/processed/*
+!data/processed/.gitkeep
+models/*
+!models/.gitkeep
+outputs/*
+!outputs/.gitkeep
 __pycache__/
 **/__pycache__/
 .ipynb_checkpoints/
