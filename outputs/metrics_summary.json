@@ -1,0 +1,26 @@
+{
+  "roc_auc": 0.8894259397344685,
+  "pr_auc": 0.4546705441922661,
+  "precision": 0.1311176872296836,
+  "recall": 0.8335745296671491,
+  "f1_score": 0.22659323367427223,
+  "confusion_matrix": [
+    [
+      15492,
+      3817
+    ],
+    [
+      115,
+      576
+    ]
+  ],
+  "threshold": 0.3,
+  "recommended_threshold": 0.3,
+  "total_validation_transactions": 20000,
+  "validation_fraud_rate": 0.03455,
+  "recommended_alerts": 4393,
+  "estimated_fraud_amount_captured": 82490.953125,
+  "estimated_net_benefit": 60525.953125,
+  "baseline_roc_auc": 0.8292313467944097,
+  "baseline_pr_auc": 0.2742575674946125
+}
