@@ -1,10 +1,17 @@
 import pandas as pd
 
 
-def assign_risk_level(risk_score: float, recommended_threshold: float) -> str:
-    if risk_score >= recommended_threshold:
+HIGH_RISK_THRESHOLD = 0.75
+
+
+def assign_risk_level(
+    risk_score: float,
+    recommended_threshold: float,
+    high_risk_threshold: float = HIGH_RISK_THRESHOLD,
+) -> str:
+    if risk_score >= high_risk_threshold:
         return "High"
-    if risk_score >= 0.50:
+    if risk_score >= recommended_threshold:
         return "Medium"
     return "Low"
 
@@ -13,7 +20,7 @@ def assign_recommended_action(risk_level: str) -> str:
     if risk_level == "High":
         return "Review immediately"
     if risk_level == "Medium":
-        return "Monitor or review if workload allows"
+        return "Review in alert queue"
     return "No immediate action"
 
 
@@ -36,11 +43,12 @@ def build_alert_queue(
     recommended_threshold: float,
     reason_lookup: dict[int, list[str]],
     default_reasons: list[str] | None = None,
+    high_risk_threshold: float = HIGH_RISK_THRESHOLD,
 ) -> pd.DataFrame:
     queue = validation_data.copy()
     queue["risk_score"] = risk_scores
     queue["risk_level"] = queue["risk_score"].apply(
-        lambda score: assign_risk_level(score, recommended_threshold)
+        lambda score: assign_risk_level(score, recommended_threshold, high_risk_threshold)
     )
     queue["predicted_fraud"] = (queue["risk_score"] >= recommended_threshold).astype(int)
     queue["recommended_action"] = queue["risk_level"].apply(assign_recommended_action)
