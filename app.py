@@ -64,7 +64,7 @@ def render_risk_business_impact(
     recommended_threshold = float(metrics["recommended_threshold"])
     selected_threshold_row = get_threshold_row(threshold_results, recommended_threshold)
 
-    st.header("Risk & Business Impact")
+    st.header("Risk Decisioning")
     overview_columns = st.columns(4)
     overview_columns[0].metric("Validation Transactions", f"{metrics['total_validation_transactions']:,}")
     overview_columns[1].metric("Validation Fraud Rate", f"{metrics['validation_fraud_rate']:.2%}")
@@ -238,7 +238,7 @@ def filter_alert_queue(alert_queue: pd.DataFrame) -> pd.DataFrame:
 
 
 def render_alert_queue(alert_queue: pd.DataFrame) -> None:
-    st.header("Alert Queue")
+    st.header("Alert Review")
     filtered_alerts = filter_alert_queue(alert_queue)
 
     st.subheader("Alert Workload")
@@ -313,10 +313,10 @@ def main():
 
     page = st.sidebar.radio(
         "Page",
-        ["Risk & Business Impact", "Alert Queue"],
+        ["Risk Decisioning", "Alert Review"],
     )
 
-    if page == "Risk & Business Impact":
+    if page == "Risk Decisioning":
         render_risk_business_impact(metrics, threshold_results, alert_queue, pattern_data)
     else:
         render_alert_queue(alert_queue)
