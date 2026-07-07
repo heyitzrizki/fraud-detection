@@ -14,3 +14,7 @@ __pycache__/
 .ipynb_checkpoints/
 .env
 .DS_Store
+web/node_modules/
+web/dist/
+web/vite-dev.*.log
+web/risklens-*.png
